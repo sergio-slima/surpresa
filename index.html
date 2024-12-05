@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Surpresa!</title>
+  <style>
+    body {
+      background-color: #000;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      position: relative;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .floating-images {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 50%;
+    }
+
+    .floating-images img {
+      position: absolute;
+      animation: float 8s linear infinite;
+    }
+
+    .floating-images img:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .floating-images img:nth-child(2) {
+      animation-delay: 2s;
+    }
+
+    .floating-images img:nth-child(3) {
+      animation-delay: 4s;
+    }
+
+    .floating-images img:nth-child(4) {
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .message {
+      font-size: 32px;
+      color: #fff;
+      margin-bottom: 1px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .button-container {
+      position: relative;
+      display: inline-block;
+      z-index: 2;
+    }
+
+    .button {
+      font-size: 32px;
+      padding: 20px 40px;
+      background-color: #00ff00;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      display: none;
+      z-index: 3;
+    }
+
+    .modal-content {
+      background-color: #333;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .modal-content .modal-message {
+      font-size: 32px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .modal-content .modal-button {
+      font-size: 32px;
+      padding: 20px 40px;
+      background-color: #00ff00;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .congratulations {
+      font-size: 36px;
+      color: #fff;
+      margin-top: 20px;
+      display: none;
+    }
+
+    .arrow-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      z-index: 2;
+    }
+
+    .arrow {
+      width: 80px;
+      height: 80px;
+      animation: blink 1s linear infinite;
+      transform: rotate(90deg);
+    }
+
+    .arrow img {
+      width: 100%;
+      height: 100%;
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="message">Olá, jovem! Tenho uma surpresa pra você. 🎁</h1>
+    <div class="button-container">
+      <div class="arrow-container">
+        <div class="arrow">
+          <img src="arrow.png" alt="arrow">
+        </div>
+        <div class="arrow">
+          <img src="arrow.png" alt="arrow">
+        </div>
+      </div>
+      <button class="button">Clique aqui</button>
+    </div>
+    <p class="congratulations">Parabéns! 🤩🎉 Será incrível ter a sua presença conosco.</p>
+    <p class="congratulations">RJC - Renovação de Jovens com Cristo - 2024.</p>
+  </div>
+
+  <div class="floating-images">
+    <img src="balloon.png" alt="balloon" style="left: 10%; top: 10%; width: 80px;">
+    <img src="gift.png" alt="gift" style="left: 50%; top: 30%; width: 80px;">
+    <img src="clapping.png" alt="clapping" style="left: 30%; top: 60%; width: 80px;">
+    <img src="emoji.png" alt="emoji" style="left: 70%; top: 70%; width: 80px;">
+  </div>
+
+  <div class="modal">
+    <div class="modal-content">
+      <p class="modal-message" id="countdown">Opa! Falta 1 dia para o RJC de Açailândia.</p>
+      <p class="modal-message">Prepare-se para aproveitar cada segundo dessa experiência única! Bora?</p>
+      <button class="modal-button">Eu Vou!</button>
+    </div>
+  </div>
+
+  <script src="https://www.napoleon.com.br/codigos/confetti.min.js"></script>
+  <script>
+    var floatingImages = document.querySelector(".floating-images");
+
+    var images = [
+      "balloon.png",
+      "gift.png",
+      "clapping.png",
+      "emoji.png"
+    ];
+
+    for (var i = 0; i < 25; i++) {
+      var img = document.createElement("img");
+      img.src = images[Math.floor(Math.random() * images.length)];
+      img.style.left = Math.random() * 100 + "%";
+      img.style.top = Math.random() * 100 + "%";
+      img.style.width = Math.floor(Math.random() * 80 + 20) + "px";
+      floatingImages.appendChild(img);
+    }
+
+    var button = document.querySelector(".button");
+    button.addEventListener("click", function() {
+      var modal = document.querySelector(".modal");
+      modal.style.display = "flex";
+    });
+
+    var modalButton = document.querySelector(".modal-button");
+    modalButton.addEventListener("click", function() {
+      var modal = document.querySelector(".modal");
+      modal.style.display = "none";
+      var congratulations = document.querySelector(".congratulations");
+      congratulations.style.display = "block";
+
+      // Efeito de explosão de confetes
+      confetti.start();
+      setTimeout(function() {
+        confetti.stop();
+      }, 3000);
+    });
+
+    // Contagem regressiva
+    var countdown = document.getElementById("countdown");
+
+    function updateCountdown() {
+      var now = new Date();
+      var targetDate = new Date("12/06/2024");
+      var distance = targetDate - now;
+
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+
+      if (now === targetDate) {
+        countdown.innerHTML = "Opa! Hoje é o dia. Se prepare para grandes emoções no RJC de Açailândia.";
+      } else {
+        countdown.innerHTML = "Opa! Faltam " + days + " dias para o RJC de Açailândia.";
+      }
+    }
+    // updateCountdown();
+    // setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
